@@ -13,13 +13,22 @@ body {
     background: #f8f8f8;
 }
 header {
-    background-color: #b71c1c;
+    background-color: #b71c1c; /* dark red */
     color: white;
-    padding: 20px;
+    padding: 20px 30px;
     text-align: center;
+    border-bottom: 4px solid #ffccbc; /* subtle accent line */
 }
-header h1 { margin: 0; font-size: 28px; }
-header h2 { margin: 5px 0 0; font-weight: normal; font-size: 16px; opacity: 0.9; }
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+header h2 {
+    margin: 5px 0 0;
+    font-size: 16px;
+    font-weight: normal;
+    opacity: 0.9;
+}
 .container { max-width: 1100px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 .timeline { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
 .lane { display: flex; flex-direction: column; border-left: 4px solid #b71c1c; padding-left: 10px; }
@@ -41,60 +50,237 @@ th { background-color: #b71c1c; color: white; }
     margin: auto;
     padding: 20px;
     border-radius: 8px;
-    max-width: 90%; /* increased from 700px to 90% of screen width */
-    height: 80%; /* optional, makes it taller */
+    max-width: 90%;
+    height: 80%; 
     text-align: center;
-    overflow-y: auto; /* scroll if content is taller than modal */
+    overflow-y: auto; 
 }
 
 .modal-content img {
     max-width: 100%;
-    max-height: 70vh; /* ensures image fits nicely within viewport */
+    max-height: 70vh; 
     height: auto;
     margin-top: 15px;
 }
 .child-row {
-    display: none; /* hide all child rows initially */
+    display: none;
 }
+
+.timeline-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #b71c1c;
+}
+.milestone {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #b71c1c;
+    position: relative;
+    left: -8px; 
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
 .close:hover { color: black; }
+
+.child-row {
+  display: table-row;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.7s ease, opacity 0.7s ease;
+}
+.child-row {
+  display: none;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.child-row.open {
+  display: table-row;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+#presentIndicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #b71c1c;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Bottom-center Stop hint */
+#stopHint {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: default;
+}
+#stopHint.show {
+  opacity: 1;
+}
+#presentBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #1976d2; 
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 1002;
+  transition: opacity 0.3s ease;
+}
+
+#presentBtn:hover {
+  background-color: #1565c0;
+}
+
+
+#presentBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 1002;
+  transition: opacity 0.3s ease;
+}
+#presentBtn:hover { background-color: #1565c0; }
+
+#presentIndicator { position: fixed; top: 20px; right: 100px; background: #b71c1c; color: #fff; padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 14px; z-index: 1001; opacity: 0; transition: opacity 0.3s ease; }
+#stopHint { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 14px; z-index: 1001; opacity: 0; transition: opacity 0.3s ease; cursor: default; }
+#stopHint.show { opacity: 1; }
+
+
+#stopHint {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 10px 20px;      
+  border-radius: 8px;       
+  font-size: 16px;          
+  z-index: 1001;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: default;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  min-width: 180px;         
+  text-align: center;
+}
+#stopHint.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); 
+}
+.legend-floating {
+  position: fixed;
+  bottom: 80px; 
+  right: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 13px;
+  z-index: 1002;
+}
+.legend-floating .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+}
+.legend-floating .color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
 
 .help-bar { background-color: #f5f5f5; color: #333; text-align: center; padding: 12px; font-size: 14px; border-top: 1px solid #ddd; width: 100%; position: fixed; bottom: 0; left: 0; z-index: 1000; }
 </style>
 </head>
 <body>
+    <header>
+        <h1 style="margin-bottom:5px;">Meeting: Lilly.com Unified Experience</h1>
+        <h2 style="margin:2px 0; font-weight:normal; font-size:16px; opacity:0.9;">
+            Date: 08/08/2025 | Time: 12:00 PM – 12:45 PM
+        </h2>
+        <h2 style="margin:2px 0; font-weight:normal; font-size:16px; opacity:0.9;">
+            Presenters: Kavin & Sona (LCCI Tagging Team)
+        </h2>
+    </header>
+<div class="legend-floating">
+    <strong>Vendor Legend:</strong>
+    <span class="legend-item"><span class="color-box" style="background:#fce4ec"></span>Internal</span>
+    <span class="legend-item"><span class="color-box" style="background:#e8f5e9"></span>TCS</span>
+    <span class="legend-item"><span class="color-box" style="background:#e3f2fd"></span>Deloitte</span>
+    <span class="legend-item"><span class="color-box" style="background:#fff3e0"></span>Credera</span>
+  </div>
+  
+  
+<button id="presentBtn">▶ Present</button>
+<div id="presentIndicator">▶ Presenting</div>
+<div id="stopHint">Stop</div>
 
-<header>
-    <h1>Lilly.com Unified Experience</h1>
-    <h2>Tagging Team – Interactive Timeline</h2>
-</header>
+  
 
-<div class="container">
-
-    <!-- Timeline Swimlanes -->
+  <div class="container">
+    
     <div class="timeline" id="timelineContainer">
-        <!-- Dynamic Timeline will populate here -->
+        
     </div>
-
-    <!-- Collapsible Tasks Table -->
-    <table id="tasksTable">
-        <thead>
-            <tr>
-                <th>Project Phase / Task</th>
-                <th>Team</th>
-                <th>POC(s)</th>
-                <th>Reference</th>
-            </tr>
-        </thead>
-        <tbody id="tasksBody">
-            <!-- Dynamic table rows -->
-        </tbody>
-    </table>
-
+    
 </div>
 
-<!-- Image Modal -->
+
 <div id="imageModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
@@ -107,134 +293,266 @@ th { background-color: #b71c1c; color: white; }
 </div>
 
 <script>
-const phases = [
+
+
+const vendorColors = {
+  "Internal": "#fce4ec",
+  "Deloitte": "#e3f2fd",
+  "Credera": "#fff3e0",
+  "TCS": "#e8f5e9"
+};
+
+
+const siteMeasurement = [
     {
-        name:"Requirements Gathering",
-        team:"Tagging team",
-        poc:"xyz person / Steve",
-        tasks:[
-            {name:"FIGMA/Business Requirements", ref:"figma.png"},
-            {name:"BRD/SDR Creation", ref:"images/brd.png"},
-            {name:"BRD/SDR Review & Approval", ref:"images/brd_review.png"}
+        name: "Requirements Gathering",
+        tasks: [
+            { name: "FIGMA Review", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "figma.png" },
+            { name: "BRD/SDR Creation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "brd.png" },
+            { name: "BRD/SDR Review & Approval", team: "Business team", poc: "Steven J Rommeney", vendor: "Internal", ref: "brd_review.png" }
         ]
     },
     {
-        name:"Adobe Experience Platform & Datakayer (Parallel)",
-        team:"AEP / Tagging team",
-        poc:"Stetson / Adwaith / Pragna",
-        tasks:[
-            {name:"Schema Architecture Design & Finalize", ref:"images/schema.png"},
-            {name:"Data Stream Creation", ref:"images/datastream.png"},
-            {name:"Dataset Creation", ref:"images/dataset.png"},
-            {name:"DL Implementation Guide Creation", ref:"images/tsd.png"},
-            {name:"DL Handoff to Dev Team", ref:"images/tsd_handoff.png"},
-            {name:"DL Development (by Devs)", ref:"images/dl_dev.png"},
-            {name:"DL Validation & Fixes", ref:"images/dl_validation.png"}
+        name: "Adobe Experience Platform",
+        tasks: [
+            { name: "XDM Schema Architecture Design & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "schema.png" },
+            { name: "Data Stream Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "datastream.png" },
+            { name: "Dataset Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "dataset.png" }
         ]
     },
     {
-        name:"Adobe Launch Config & Validation (Sequential)",
-        team:"Tagging team",
-        poc:"Tagging team",
-        tasks:[
-            {name:"Marketing Pixel Setup", ref:"images/pixel.png"},
-            {name:"Web SDK Setup", ref:"images/websdk.png"},
-            {name:"GA4 Setup", ref:"images/ga4.png"},
-            {name:"Adobe Target Setup", ref:"images/target.png"},
-            {name:"SPLUNK RUM Setup", ref:"images/splunk.png"}
+        name: "Data Layer Development & Validation",
+        tasks: [
+            { name: "DL Implementation Guide Creation", team: "Analytics", poc: "Pragna Kolli", vendor: "Deloitte", ref: "tsd.png" },
+            { name: "DL Implementation Guide Review & Sign Off", team: "LCCI Tagging team", poc: "Pragna Kolli", vendor: "Deloitte", ref: "tsd.png" },
+            { name: "DL Development (by Devs)", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte", ref: "dl_dev.png" },
+            { name: "DL Development (by Devs)", team: "SPE", poc: "Tim Burch", vendor: "Internal", ref: "dl_dev.png" },
+            { name: "DL Validation & Fixes", team: "Analytics / LCCI Tagging team", poc: "Pragna Kolli & Satnam Singh", vendor: "Deloitte & Internal", ref: "dl_validation.png" }
         ]
     },
     {
-        name:"Adobe Target Activity Setup (Parallel)",
-        team:"Personalization / Tagging team",
-        poc:"Ray / Moitree / Adwaith / Deloitte",
-        tasks:[
-            {name:"Use Case Identification & Design Doc", ref:"images/usecase.png"},
-            {name:"Audience Setup", ref:"images/audience.png"},
-            {name:"Target Activity Configuration", ref:"images/activity_config.png"},
-            {name:"QA & Validation", ref:"images/qa.png"}
+        name: "Adobe Launch Config & Validation",
+        tasks: [
+            { name: "Adobe Launch Property Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "launchUI.png" },
+            { name: "Marketing Pixel Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "pixel.png" },
+            { name: "Web SDK Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "websdk.png" },
+            { name: "GA4 Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "ga4.png" },
+            { name: "SPLUNK RUM Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "splunk.png" }
         ]
     },
     {
-        name:"Reporting Set-up (Sequential)",
-        team:"Tagging / CJA Reporting team",
-        poc:"Tagging / Adwaith",
-        tasks:[
-            {name:"Mapping Doc for CJA", ref:"images/mapping.png"},
-            {name:"CJA Connections & Data Views", ref:"images/cja.png"},
-            {name:"CJA Reporting Validation", ref:"images/cja_validation.png"},
-            {name:"GA4 Reporting Validation", ref:"images/ga4_validation.png"}
+        name: "Reporting Set-up",
+        tasks: [
+            { name: "Mapping Doc for CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "mapping.png" },
+            { name: "CJA Connections & Data Views", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "cja.png" },
+            { name: "CJA Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "cja_validation.png" },
+            { name: "GA4 Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "ga4_validation.png" }
         ]
     },
     {
-        name:"Release",
-        team:"Deloitte & Tagging team",
-        poc:"All",
-        tasks:[
-            {name:"Development", ref:"images/development.png"},
-            {name:"Adobe Launch", ref:"images/launch.png"},
-            {name:"Adobe Target", ref:"images/target_release.png"},
-            {name:"Schema", ref:"images/schema_release.png"}
+        name: "Release",
+        tasks: [
+            { name: "Development", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte",  ref: "developmentEDS.png" },
+            { name: "Development", team: "SPE", poc: "Tim Burch", vendor: "Internal",  ref: "developmentSPE.png" },
+            { name: "Adobe Launch", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launch.png" },
+            { name: "Schema", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "schema_release.png" }
+        ]
+    }
+];
+const personalizationMVPs = [
+    {
+        name: "Adobe Target Activity Setup",
+        tasks: [
+            { name: "Use Case Identification & Design Doc", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "usecase.png" },
+            { name: "Audience Setup", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "audience.png" },
+            { name: "Adobe Target Workspace Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "targetUI.png" },
+            { name: "Target Activity Configuration", team: "Analytics team", poc: "Pragna Kolli", vendor: "Deloitte", ref: "activity_config.png" },
+            { name: "Personalization BRD", team: "Personalization Reporting team", poc: "Rajalakshmi M", vendor: "Credera", ref: "targetUI.png" },
+            { name: "Adobe Target Activity Data collection and send to GA4 & CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "target.png" },
+            { name: "Personalization use case QA & Validation", team: "Personalization QA team", poc: "Ramya Vonteddu", vendor: "Credera", ref: "qa.png" },
+            { name: "Adobe Target Activity Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launch.png" },
+            { name: "Adobe Launch AT Set-up Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launchRelease.png" }
         ]
     }
 ];
 
-// // Populate Timeline
-// const timelineContainer = document.getElementById("timelineContainer");
-// phases.forEach((phase, idx)=>{
-//     const lane = document.createElement("div");
-//     lane.classList.add("lane");
-//     const h3 = document.createElement("h3");
-//     h3.textContent = phase.name;
-//     lane.appendChild(h3);
 
-//     phase.tasks.forEach(task=>{
-//         const div = document.createElement("div");
-//         div.classList.add("task");
-//         if(phase.name.includes("Parallel")) div.classList.add("parallel");
-//         div.innerHTML = `${task.name} <button class="view-btn" onclick="showImage('${task.ref}')">View</button>`;
-//         lane.appendChild(div);
-//     });
+function createTable(id, title, dataArray) {
+    const container = document.querySelector(".container");
 
-//     timelineContainer.appendChild(lane);
-// });
+    // Create wrapper with title
+    const section = document.createElement("div");
+    section.style.marginBottom = "40px";
+    section.innerHTML = `<h2 style="color:#b71c1c;margin-bottom:10px;">${title}</h2>
+    <table id="${id}" style="width:100%;border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>Project Phase / Task</th>
+                <th>Team</th>
+                <th>POC(s)</th>
+                <th>Vendor</th>
+                <th>Reference</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>`;
+    container.appendChild(section);
 
-// Populate Tasks Table
-const tasksBody = document.getElementById("tasksBody");
-phases.forEach((phase, pIdx)=>{
-    const parentRow = document.createElement("tr");
-    parentRow.classList.add("parent-row");
-    parentRow.innerHTML = `<td colspan="4"><b>${phase.name}</b></td>`;
-    tasksBody.appendChild(parentRow);
+    const tbody = section.querySelector("tbody");
 
-    phase.tasks.forEach((task, tIdx)=>{
-        const childRow = document.createElement("tr");
-        childRow.classList.add("child-row");
-        childRow.innerHTML = `<td>${task.name}</td><td>${phase.team}</td><td>${phase.poc}</td><td><button class="view-btn" onclick="showImage('${task.ref}')">View</button></td>`;
-        tasksBody.appendChild(childRow);
-    });
-});
+    dataArray.forEach((phase, pIdx) => {
+        const parentRow = document.createElement("tr");
+        parentRow.classList.add("parent-row");
+        parentRow.innerHTML = `<td colspan="5" style="font-weight:bold;cursor:pointer;">▶ ${phase.name}</td>`;
+        tbody.appendChild(parentRow);
 
-// Collapse/Expand functionality
-document.querySelectorAll('.parent-row').forEach((parentRow, pIdx) => {
-    parentRow.style.cursor = 'pointer';
-    parentRow.addEventListener('click', () => {
-        const childRows = Array.from(parentRow.parentNode.querySelectorAll('.child-row'));
-        childRows.forEach(row => {
-            // toggle display for the rows under this parent
-            row.style.display = (row.style.display === 'table-row') ? 'none' : 'table-row';
+        phase.tasks.forEach((task) => {
+            const childRow = document.createElement("tr");
+            childRow.classList.add("child-row");
+            childRow.style.display = "none"; 
+            const bg = vendorColors[task.vendor] || "#fff";
+            childRow.style.backgroundColor = bg;
+            childRow.innerHTML = `
+                <td>${task.name}</td>
+                <td>${task.team}</td>
+                <td>${task.poc}</td>
+                <td>${task.vendor}</td>
+                <td><button class="view-btn" onclick="showImage('${task.ref}')">View</button></td>
+            `;
+            tbody.appendChild(childRow);
         });
     });
-});
+    
+    
+    section.querySelectorAll(".parent-row").forEach(parentRow => {
+        parentRow.addEventListener("click", () => {
+            const arrow = parentRow.querySelector("td");
+            let next = parentRow.nextElementSibling;
+            let isOpening = false;
+
+            while (next && next.classList.contains("child-row")) {
+                const content = next;
+                if (content.style.display === "none") {
+                    content.style.display = "table-row";
+                    setTimeout(() => content.classList.add("open"), 10);
+                    isOpening = true;
+                } else {
+                    content.classList.remove("open");
+                    setTimeout(() => content.style.display = "none", 600);
+                }
+                next = next.nextElementSibling;
+            }
+
+            arrow.textContent = isOpening
+                ? `▼ ${arrow.textContent.slice(2)}`
+                : `▶ ${arrow.textContent.slice(2)}`;
+        });
+    });
 
 
-// Image modal
+
+
+}
+
+
+createTable("siteTable", "Site Measurement Implementation", siteMeasurement);
+createTable("targetTable", "Personalization (Adobe Target) Implementation", personalizationMVPs);
+
+
+
 function showImage(src){
     document.getElementById("modalImage").src = src;
     document.getElementById("imageModal").style.display = "block";
 }
 function closeModal(){ document.getElementById("imageModal").style.display = "none"; }
 window.onclick = function(event){ if(event.target==document.getElementById("imageModal")) closeModal(); }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const presentBtn = document.getElementById('presentBtn');
+    const presentIndicator = document.getElementById('presentIndicator');
+    const stopHint = document.getElementById('stopHint');
+
+    
+    presentBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            presentBtn.style.display = 'none';
+        
+            presentIndicator.style.opacity = '1';
+            setTimeout(() => { presentIndicator.style.opacity = '0'; }, 1000);
+            // Show stop hint initially
+            // stopHint.classList.add('show');
+            // setTimeout(() => { stopHint.classList.remove('show'); }, 1500);
+            stopHint.classList.add('show');
+            stopHint.style.transform = 'translateX(-50%) translateY(-5px)'; 
+            setTimeout(() => { 
+                stopHint.classList.remove('show'); 
+                stopHint.style.transform = 'translateX(-50%) translateY(0)';
+            }, 1500);
+
+        }
+    });
+
+   
+    stopHint.addEventListener('mouseenter', () => stopHint.classList.add('show'));
+    stopHint.addEventListener('mouseleave', () => stopHint.classList.remove('show'));
+
+    
+    stopHint.addEventListener('click', () => {
+        if (document.fullscreenElement) document.exitFullscreen();
+    });
+
+    
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            presentBtn.style.display = 'block';
+            stopHint.classList.remove('show'); 
+        }
+    });
+});
+
+
+
+function showStopBar() {
+    let stopBar = document.getElementById('stopBar');
+    if (!stopBar) {
+        stopBar = document.createElement('div');
+        stopBar.id = 'stopBar';
+        stopBar.style.position = 'fixed';
+        stopBar.style.bottom = '0';
+        stopBar.style.left = '0';
+        stopBar.style.width = '100%';
+        stopBar.style.background = 'rgba(0,0,0,0.7)';
+        stopBar.style.color = 'white';
+        stopBar.style.textAlign = 'center';
+        stopBar.style.padding = '8px';
+        stopBar.style.fontSize = '14px';
+        stopBar.style.cursor = 'pointer';
+        stopBar.innerText = 'Stop Presenting';
+        stopBar.addEventListener('click', () => document.exitFullscreen());
+        document.body.appendChild(stopBar);
+    }
+    stopBar.style.display = 'block';
+    document.addEventListener('mousemove', e => {
+        stopBar.style.opacity = e.clientY > window.innerHeight - 50 ? '1' : '0';
+    });
+}
+function hideStopBar() {
+    const stopBar = document.getElementById('stopBar');
+    if (stopBar) stopBar.style.display = 'none';
+}
+
+
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes fadeInRow {
+    from {opacity: 0; transform: translateY(-4px);}
+    to {opacity: 1; transform: translateY(0);}
+}`;
+document.head.appendChild(style);
 </script>
+
 </body>
 </html>
+
