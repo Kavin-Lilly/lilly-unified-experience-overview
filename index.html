@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lilly.com Unified Experience - Project Timeline</title>
+<link rel="icon" type="image/x-icon" href="https://www.lilly.com/favicon.ico">
+<style>
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f8f8;
+}
+header {
+    background-color: #b71c1c;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+header h1 { margin: 0; font-size: 28px; }
+header h2 { margin: 5px 0 0; font-weight: normal; font-size: 16px; opacity: 0.9; }
+.container { max-width: 1100px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.timeline { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.lane { display: flex; flex-direction: column; border-left: 4px solid #b71c1c; padding-left: 10px; }
+.lane h3 { margin: 0 0 5px; color: #b71c1c; }
+.task { display: flex; align-items: center; gap: 10px; background: #ffe0b2; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
+.task.parallel { background: #c8e6c9; }
+.task.collapsed .child-tasks { display: none; }
+.child-tasks { display: flex; flex-direction: column; margin-left: 20px; gap: 5px; }
+button.view-btn { background-color: #b71c1c; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+button.view-btn:hover { background-color: #9c1414; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+th { background-color: #b71c1c; color: white; }
+
+.modal { display: none; position: fixed; z-index: 1000; padding-top: 80px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); }
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 90%; /* increased from 700px to 90% of screen width */
+    height: 80%; /* optional, makes it taller */
+    text-align: center;
+    overflow-y: auto; /* scroll if content is taller than modal */
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 70vh; /* ensures image fits nicely within viewport */
+    height: auto;
+    margin-top: 15px;
+}
+.child-row {
+    display: none; /* hide all child rows initially */
+}
+
+.close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close:hover { color: black; }
+
+.help-bar { background-color: #f5f5f5; color: #333; text-align: center; padding: 12px; font-size: 14px; border-top: 1px solid #ddd; width: 100%; position: fixed; bottom: 0; left: 0; z-index: 1000; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Lilly.com Unified Experience</h1>
+    <h2>Tagging Team – Interactive Timeline</h2>
+</header>
+
+<div class="container">
+
+    <!-- Timeline Swimlanes -->
+    <div class="timeline" id="timelineContainer">
+        <!-- Dynamic Timeline will populate here -->
+    </div>
+
+    <!-- Collapsible Tasks Table -->
+    <table id="tasksTable">
+        <thead>
+            <tr>
+                <th>Project Phase / Task</th>
+                <th>Team</th>
+                <th>POC(s)</th>
+                <th>Reference</th>
+            </tr>
+        </thead>
+        <tbody id="tasksBody">
+            <!-- Dynamic table rows -->
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Image Modal -->
+<div id="imageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Reference">
+    </div>
+</div>
+
+<div class="help-bar">
+    © 2025 | <a href="mailto:EWI_Tagging_and_Measurement@lists.lilly.com" style="color:#c8102e;text-decoration:none;">EWI_Tagging_and_Measurement@lists.lilly.com</a>
+</div>
+
+<script>
+const phases = [
+    {
+        name:"Requirements Gathering",
+        team:"Tagging team",
+        poc:"xyz person / Steve",
+        tasks:[
+            {name:"FIGMA/Business Requirements", ref:"images/figma.png"},
+            {name:"BRD/SDR Creation", ref:"images/brd.png"},
+            {name:"BRD/SDR Review & Approval", ref:"images/brd_review.png"}
+        ]
+    },
+    {
+        name:"Adobe Experience Platform & Datakayer (Parallel)",
+        team:"AEP / Tagging team",
+        poc:"Stetson / Adwaith / Pragna",
+        tasks:[
+            {name:"Schema Architecture Design & Finalize", ref:"images/schema.png"},
+            {name:"Data Stream Creation", ref:"images/datastream.png"},
+            {name:"Dataset Creation", ref:"images/dataset.png"},
+            {name:"DL Implementation Guide Creation", ref:"images/tsd.png"},
+            {name:"DL Handoff to Dev Team", ref:"images/tsd_handoff.png"},
+            {name:"DL Development (by Devs)", ref:"images/dl_dev.png"},
+            {name:"DL Validation & Fixes", ref:"images/dl_validation.png"}
+        ]
+    },
+    {
+        name:"Adobe Launch Config & Validation (Sequential)",
+        team:"Tagging team",
+        poc:"Tagging team",
+        tasks:[
+            {name:"Marketing Pixel Setup", ref:"images/pixel.png"},
+            {name:"Web SDK Setup", ref:"images/websdk.png"},
+            {name:"GA4 Setup", ref:"images/ga4.png"},
+            {name:"Adobe Target Setup", ref:"images/target.png"},
+            {name:"SPLUNK RUM Setup", ref:"images/splunk.png"}
+        ]
+    },
+    {
+        name:"Adobe Target Activity Setup (Parallel)",
+        team:"Personalization / Tagging team",
+        poc:"Ray / Moitree / Adwaith / Deloitte",
+        tasks:[
+            {name:"Use Case Identification & Design Doc", ref:"images/usecase.png"},
+            {name:"Audience Setup", ref:"images/audience.png"},
+            {name:"Target Activity Configuration", ref:"images/activity_config.png"},
+            {name:"QA & Validation", ref:"images/qa.png"}
+        ]
+    },
+    {
+        name:"Reporting Set-up (Sequential)",
+        team:"Tagging / CJA Reporting team",
+        poc:"Tagging / Adwaith",
+        tasks:[
+            {name:"Mapping Doc for CJA", ref:"images/mapping.png"},
+            {name:"CJA Connections & Data Views", ref:"images/cja.png"},
+            {name:"CJA Reporting Validation", ref:"images/cja_validation.png"},
+            {name:"GA4 Reporting Validation", ref:"images/ga4_validation.png"}
+        ]
+    },
+    {
+        name:"Release",
+        team:"Deloitte & Tagging team",
+        poc:"All",
+        tasks:[
+            {name:"Development", ref:"images/development.png"},
+            {name:"Adobe Launch", ref:"images/launch.png"},
+            {name:"Adobe Target", ref:"images/target_release.png"},
+            {name:"Schema", ref:"images/schema_release.png"}
+        ]
+    }
+];
+
+// // Populate Timeline
+// const timelineContainer = document.getElementById("timelineContainer");
+// phases.forEach((phase, idx)=>{
+//     const lane = document.createElement("div");
+//     lane.classList.add("lane");
+//     const h3 = document.createElement("h3");
+//     h3.textContent = phase.name;
+//     lane.appendChild(h3);
+
+//     phase.tasks.forEach(task=>{
+//         const div = document.createElement("div");
+//         div.classList.add("task");
+//         if(phase.name.includes("Parallel")) div.classList.add("parallel");
+//         div.innerHTML = `${task.name} <button class="view-btn" onclick="showImage('${task.ref}')">View</button>`;
+//         lane.appendChild(div);
+//     });
+
+//     timelineContainer.appendChild(lane);
+// });
+
+// Populate Tasks Table
+const tasksBody = document.getElementById("tasksBody");
+phases.forEach((phase, pIdx)=>{
+    const parentRow = document.createElement("tr");
+    parentRow.classList.add("parent-row");
+    parentRow.innerHTML = `<td colspan="4"><b>${phase.name}</b></td>`;
+    tasksBody.appendChild(parentRow);
+
+    phase.tasks.forEach((task, tIdx)=>{
+        const childRow = document.createElement("tr");
+        childRow.classList.add("child-row");
+        childRow.innerHTML = `<td>${task.name}</td><td>${phase.team}</td><td>${phase.poc}</td><td><button class="view-btn" onclick="showImage('${task.ref}')">View</button></td>`;
+        tasksBody.appendChild(childRow);
+    });
+});
+
+// Collapse/Expand functionality
+document.querySelectorAll('.parent-row').forEach((parentRow, pIdx) => {
+    parentRow.style.cursor = 'pointer';
+    parentRow.addEventListener('click', () => {
+        const childRows = Array.from(parentRow.parentNode.querySelectorAll('.child-row'));
+        childRows.forEach(row => {
+            // toggle display for the rows under this parent
+            row.style.display = (row.style.display === 'table-row') ? 'none' : 'table-row';
+        });
+    });
+});
+
+
+// Image modal
+function showImage(src){
+    document.getElementById("modalImage").src = src;
+    document.getElementById("imageModal").style.display = "block";
+}
+function closeModal(){ document.getElementById("imageModal").style.display = "none"; }
+window.onclick = function(event){ if(event.target==document.getElementById("imageModal")) closeModal(); }
+</script>
+</body>
+</html>
