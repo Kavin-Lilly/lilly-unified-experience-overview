@@ -30,7 +30,7 @@ header h2 {
     opacity: 0.9;
 }
 .container { max-width: 1100px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.timeline { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.timeline { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
 .lane { display: flex; flex-direction: column; border-left: 4px solid #b71c1c; padding-left: 10px; }
 .lane h3 { margin: 0 0 5px; color: #b71c1c; }
 .task { display: flex; align-items: center; gap: 10px; background: #ffe0b2; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
@@ -62,9 +62,9 @@ th { background-color: #b71c1c; color: white; }
     height: auto;
     margin-top: 15px;
 }
-.child-row {
+/* .child-row {
     display: none;
-}
+} */
 
 .timeline-bar {
     position: absolute;
@@ -97,25 +97,25 @@ th { background-color: #b71c1c; color: white; }
 .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
 .close:hover { color: black; }
 
-.child-row {
+/* .child-row {
   display: table-row;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   transition: max-height 0.7s ease, opacity 0.7s ease;
-}
-.child-row {
+} */
+/* .child-row {
   display: none;
   opacity: 0;
   transform: translateY(-5px);
   transition: opacity 0.6s ease, transform 0.6s ease;
-}
+} */
 
-.child-row.open {
+/* .child-row.open {
   display: table-row;
   opacity: 1;
   transform: translateY(0);
-}
+} */
 
 
 #presentIndicator {
@@ -241,6 +241,89 @@ th { background-color: #b71c1c; color: white; }
   border-radius: 4px;
   border: 1px solid #ccc;
 }
+.phase-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: #fff3e0;
+  border: 2px solid #b71c1c;
+  border-radius: 10px;
+  padding: 8px 16px;
+  margin: 15px auto 25px;
+  width: fit-content;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.phase-btn {
+  background-color: #b71c1c;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.phase-btn.hover, .phase-btn:hover {
+  background-color: #7f0000;
+  transform: scale(1.05);
+}
+
+.arrow {
+  color: #b71c1c;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+/* .child-row { 
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  opacity: 0;
+  transform: translateY(-6px);
+} */
+/*  
+.child-row.open { 
+  opacity: 1;
+  transform: translateY(0);
+} */
+/* 
+.child-row.closing td { border-color: transparent; }
+
+.child-row {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+} */
+/* 
+.child-row.open {
+  max-height: 200px; 
+  opacity: 1;
+  transform: translateY(0);
+} */
+
+.child-row {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+
+.child-row.open {
+  display: table-row;
+  max-height: 200px; /* adjust as needed */
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 
 
@@ -307,55 +390,59 @@ const siteMeasurement = [
     {
         name: "Requirements Gathering",
         tasks: [
-            { name: "FIGMA Review", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "figma.png" },
-            { name: "BRD/SDR Creation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "brd.png" },
-            { name: "BRD/SDR Review & Approval", team: "Business team", poc: "Steven J Rommeney", vendor: "Internal", ref: "brd_review.png" }
+            { name: "FIGMA Review", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/figma.png" },
+            { name: "BRD/SDR Creation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/brd.png" },
+            { name: "BRD/SDR Review & Approval", team: "Business team", poc: "Steven J Rommeney", vendor: "Internal", ref: "images/brd_review.png" }
         ]
     },
     {
         name: "Adobe Experience Platform",
         tasks: [
-            { name: "XDM Schema Architecture Design & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "schema.png" },
-            { name: "Data Stream Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "datastream.png" },
-            { name: "Dataset Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "dataset.png" }
+            { name: "XDM Schema Architecture Design & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "images/schema.png" },
+            { name: "Data Stream Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "images/datastream.png" },
+            { name: "Dataset Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "images/dataset.png" }
         ]
     },
     {
         name: "Data Layer Development & Validation",
         tasks: [
-            { name: "DL Implementation Guide Creation", team: "Analytics", poc: "Pragna Kolli", vendor: "Deloitte", ref: "tsd.png" },
-            { name: "DL Implementation Guide Review & Sign Off", team: "LCCI Tagging team", poc: "Pragna Kolli", vendor: "Deloitte", ref: "tsd.png" },
-            { name: "DL Development (by Devs)", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte", ref: "dl_dev.png" },
-            { name: "DL Development (by Devs)", team: "SPE", poc: "Tim Burch", vendor: "Internal", ref: "dl_dev.png" },
-            { name: "DL Validation & Fixes", team: "Analytics / LCCI Tagging team", poc: "Pragna Kolli & Satnam Singh", vendor: "Deloitte & Internal", ref: "dl_validation.png" }
+            { name: "DL Implementation Guide Creation", team: "Analytics", poc: "Pragna Kolli", vendor: "Deloitte", ref: "images/tsd.png" },
+            { name: "DL Implementation Guide Review & Sign Off", team: "LCCI Tagging team", poc: "Pragna Kolli", vendor: "Deloitte", ref: "images/tsd.png" },
+            { name: "DL Development (by Devs)", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte", ref: "images/dl_dev.png" },
+            { name: "DL Development (by Devs)", team: "SPE", poc: "Tim Burch", vendor: "Internal", ref: "images/dl_dev.png" },
+            { name: "DL Validation & Fixes", team: "Analytics / LCCI Tagging team", poc: "Pragna Kolli & Satnam Singh", vendor: "Deloitte & Internal", ref: "images/dl_validation.png" }
         ]
     },
     {
         name: "Adobe Launch Config & Validation",
         tasks: [
-            { name: "Adobe Launch Property Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "launchUI.png" },
-            { name: "Marketing Pixel Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "pixel.png" },
-            { name: "Web SDK Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "websdk.png" },
-            { name: "GA4 Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "ga4.png" },
-            { name: "SPLUNK RUM Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "splunk.png" }
+            { name: "Adobe Launch Property Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "images/launchUI.png" },
+            { name: "Marketing Pixel Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/pixel.png" },
+            { name: "Web SDK Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/websdk.png" },
+            { name: "GA4 Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/ga4.png" },
+            { name: "SPLUNK RUM Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/splunk.png" },
+            { name: "Marketing Pixel Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/pixelQA.png" },
+            { name: "Web SDK Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/websdkQA.png" },
+            { name: "GA4 Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/ga4QA.png" },
+            { name: "SPLUNK RUM Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/splunkQA.png" }
         ]
     },
     {
         name: "Reporting Set-up",
         tasks: [
-            { name: "Mapping Doc for CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "mapping.png" },
-            { name: "CJA Connections & Data Views", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "cja.png" },
-            { name: "CJA Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "cja_validation.png" },
-            { name: "GA4 Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "ga4_validation.png" }
+            { name: "Mapping Doc for CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/mapping.png" },
+            { name: "CJA Connections & Data Views", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "images/cja.png" },
+            { name: "CJA Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/cja_validation.png" },
+            { name: "GA4 Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/ga4_validation.png" }
         ]
     },
     {
         name: "Release",
         tasks: [
-            { name: "Development", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte",  ref: "developmentEDS.png" },
-            { name: "Development", team: "SPE", poc: "Tim Burch", vendor: "Internal",  ref: "developmentSPE.png" },
-            { name: "Adobe Launch", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launch.png" },
-            { name: "Schema", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "schema_release.png" }
+            { name: "Development", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte",  ref: "images/developmentEDS.png" },
+            { name: "Development", team: "SPE", poc: "Tim Burch", vendor: "Internal",  ref: "images/developmentSPE.png" },
+            { name: "Adobe Launch", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/launch.png" },
+            { name: "Schema", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "images/schema_release.png" }
         ]
     }
 ];
@@ -363,18 +450,23 @@ const personalizationMVPs = [
     {
         name: "Adobe Target Activity Setup",
         tasks: [
-            { name: "Use Case Identification & Design Doc", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "usecase.png" },
-            { name: "Audience Setup", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "audience.png" },
-            { name: "Adobe Target Workspace Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "targetUI.png" },
-            { name: "Target Activity Configuration", team: "Analytics team", poc: "Pragna Kolli", vendor: "Deloitte", ref: "activity_config.png" },
-            { name: "Personalization BRD", team: "Personalization Reporting team", poc: "Rajalakshmi M", vendor: "Credera", ref: "targetUI.png" },
-            { name: "Adobe Target Activity Data collection and send to GA4 & CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "target.png" },
-            { name: "Personalization use case QA & Validation", team: "Personalization QA team", poc: "Ramya Vonteddu", vendor: "Credera", ref: "qa.png" },
-            { name: "Adobe Target Activity Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launch.png" },
-            { name: "Adobe Launch AT Set-up Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launchRelease.png" }
+            { name: "Use Case Identification & Design Doc", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "images/usecase.png" },
+            { name: "Audience Setup", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "images/audience.png" },
+            { name: "Adobe Target Workspace Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "images/targetUI.png" },
+            { name: "Target Activity Configuration", team: "Analytics team", poc: "Pragna Kolli", vendor: "Deloitte", ref: "images/activity_config.png" },
+            { name: "Personalization BRD", team: "Personalization Reporting team", poc: "Rajalakshmi M", vendor: "Credera", ref: "images/targetUI.png" },
+            { name: "Adobe Target Activity Data collection and send to GA4 & CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/target.png" },
+            { name: "Personalization use case QA & Validation", team: "Personalization QA team", poc: "Ramya Vonteddu", vendor: "Credera", ref: "images/qa.png" },
+            { name: "Adobe Target Activity Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/launch.png" },
+            { name: "Adobe Launch AT Set-up Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/launchRelease.png" }
         ]
     }
 ];
+
+// const phases = [
+//   "Project Start", "FIGMA", "BRD", "AEP", "DATALAYER", "ADOBE LAUNCH", "REPORTING", "RELEASE", "Project End"
+// ];
+
 
 
 function createTable(id, title, dataArray) {
@@ -424,30 +516,152 @@ function createTable(id, title, dataArray) {
     });
     
     
-    section.querySelectorAll(".parent-row").forEach(parentRow => {
-        parentRow.addEventListener("click", () => {
-            const arrow = parentRow.querySelector("td");
-            let next = parentRow.nextElementSibling;
-            let isOpening = false;
+    // section.querySelectorAll(".parent-row").forEach(parentRow => {
+    //     parentRow.addEventListener("click", () => {
+    //         const arrow = parentRow.querySelector("td");
+    //         let next = parentRow.nextElementSibling;
+    //         let isOpening = false;
 
-            while (next && next.classList.contains("child-row")) {
-                const content = next;
-                if (content.style.display === "none") {
-                    content.style.display = "table-row";
-                    setTimeout(() => content.classList.add("open"), 10);
-                    isOpening = true;
-                } else {
-                    content.classList.remove("open");
-                    setTimeout(() => content.style.display = "none", 600);
-                }
-                next = next.nextElementSibling;
-            }
+    //         while (next && next.classList.contains("child-row")) {
+    //             const content = next;
+    //             if (content.style.display === "none") {
+    //                 content.style.display = "table-row";
+    //                 setTimeout(() => content.classList.add("open"), 10);
+    //                 isOpening = true;
+    //             } else {
+    //                 content.classList.remove("open");
+    //                 setTimeout(() => content.style.display = "none", 600);
+    //             }
+    //             next = next.nextElementSibling;
+    //         }
 
-            arrow.textContent = isOpening
-                ? `▼ ${arrow.textContent.slice(2)}`
-                : `▶ ${arrow.textContent.slice(2)}`;
+    //         arrow.textContent = isOpening
+    //             ? `▼ ${arrow.textContent.slice(2)}`
+    //             : `▶ ${arrow.textContent.slice(2)}`;
+    //     });
+    // });
+
+    // call this after your table is built for each section
+
+
+// function wireAccordion(section) {
+//   section.querySelectorAll('.parent-row').forEach(parentRow => {
+//     parentRow.addEventListener('click', () => {
+//       const arrowTd = parentRow.querySelector('td');
+//       // gather child rows
+//       let next = parentRow.nextElementSibling;
+//       const childRows = [];
+//       while(next && next.classList.contains('child-row')) {
+//         childRows.push(next);
+//         next = next.nextElementSibling;
+//       }
+//       if (!childRows.length) return;
+
+  
+//       const shouldOpen = childRows[0].style.display === 'none' || childRows[0].dataset.open !== 'true';
+
+//       if (shouldOpen) {
+//         childRows.forEach(r => {
+//           r.style.display = 'table-row';
+          
+//           requestAnimationFrame(()=> r.classList.add('open'));
+//           r.dataset.open = 'true';
+//         });
+//         arrowTd.textContent = `▼ ${arrowTd.textContent.slice(2).trim()}`;
+//       } else {
+        
+//         childRows.forEach(r => {
+//           r.classList.remove('open');
+//           r.dataset.open = 'false';
+         
+//           setTimeout(()=> { r.style.display = 'none'; }, 620);
+//         });
+//         arrowTd.textContent = `▶ ${arrowTd.textContent.slice(2).trim()}`;
+//       }
+//     });
+//   });
+// }
+
+function wireAccordion(section) {
+  section.querySelectorAll('.parent-row').forEach(parentRow => {
+    parentRow.addEventListener('click', () => {
+      const arrowTd = parentRow.querySelector('td');
+
+      // gather child rows
+      let next = parentRow.nextElementSibling;
+      const childRows = [];
+      while(next && next.classList.contains('child-row')) {
+        childRows.push(next);
+        next = next.nextElementSibling;
+      }
+      if (!childRows.length) return;
+
+      // check if the first child is visible
+      const isOpen = childRows[0].style.display !== 'none' && childRows[0].dataset.open === 'true';
+
+      if (!isOpen) {
+        // open all child rows
+        childRows.forEach(r => {
+          r.style.display = 'table-row';
+          requestAnimationFrame(() => r.classList.add('open'));
+          r.dataset.open = 'true';
         });
+        arrowTd.textContent = `▼ ${arrowTd.textContent.slice(2).trim()}`;
+      } else {
+        // close all child rows
+        childRows.forEach(r => {
+          r.classList.remove('open');
+          r.dataset.open = 'false';
+          setTimeout(() => { r.style.display = 'none'; }, 620);
+        });
+        arrowTd.textContent = `▶ ${arrowTd.textContent.slice(2).trim()}`;
+      }
     });
+  });
+}
+
+// function wireAccordion(section) {
+//   section.querySelectorAll('.parent-row').forEach(parentRow => {
+//     const arrowTd = parentRow.querySelector('td');
+
+//     parentRow.addEventListener('click', () => {
+//       let next = parentRow.nextElementSibling;
+//       const childRows = [];
+
+//       while(next && next.classList.contains('child-row')) {
+//         childRows.push(next);
+//         next = next.nextElementSibling;
+//       }
+
+//       if (!childRows.length) return;
+
+//       const isOpen = childRows[0].classList.contains('open');
+
+//       if (!isOpen) {
+//         // OPEN
+//         childRows.forEach(r => {
+//           r.style.display = 'table-row';
+//           requestAnimationFrame(() => r.classList.add('open'));
+//         });
+//         arrowTd.textContent = `▼ ${arrowTd.textContent.replace(/^▶|^▼/, '').trim()}`;
+//       } else {
+//         // CLOSE
+//         childRows.forEach(r => {
+//           r.classList.remove('open');
+//           setTimeout(() => r.style.display = 'none', 400); // matches CSS transition
+//         });
+//         arrowTd.textContent = `▶ ${arrowTd.textContent.replace(/^▶|^▼/, '').trim()}`;
+//       }
+//     });
+//   });
+// }
+
+
+// call after table creation
+document.querySelectorAll('.container > div').forEach(section => wireAccordion(section));
+
+
+
 
 
 
@@ -468,49 +682,166 @@ function closeModal(){ document.getElementById("imageModal").style.display = "no
 window.onclick = function(event){ if(event.target==document.getElementById("imageModal")) closeModal(); }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const presentBtn = document.getElementById('presentBtn');
-    const presentIndicator = document.getElementById('presentIndicator');
-    const stopHint = document.getElementById('stopHint');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const presentBtn = document.getElementById('presentBtn');
+//     const presentIndicator = document.getElementById('presentIndicator');
+//     const stopHint = document.getElementById('stopHint');
 
     
-    presentBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-            presentBtn.style.display = 'none';
+//     presentBtn.addEventListener('click', () => {
+//         if (!document.fullscreenElement) {
+//             document.documentElement.requestFullscreen();
+//             presentBtn.style.display = 'none';
         
-            presentIndicator.style.opacity = '1';
-            setTimeout(() => { presentIndicator.style.opacity = '0'; }, 1000);
-            // Show stop hint initially
-            // stopHint.classList.add('show');
-            // setTimeout(() => { stopHint.classList.remove('show'); }, 1500);
-            stopHint.classList.add('show');
-            stopHint.style.transform = 'translateX(-50%) translateY(-5px)'; 
-            setTimeout(() => { 
-                stopHint.classList.remove('show'); 
-                stopHint.style.transform = 'translateX(-50%) translateY(0)';
-            }, 1500);
+//             presentIndicator.style.opacity = '1';
+//             setTimeout(() => { presentIndicator.style.opacity = '0'; }, 1000);
+//             // Show stop hint initially
+//             // stopHint.classList.add('show');
+//             // setTimeout(() => { stopHint.classList.remove('show'); }, 1500);
+//             stopHint.classList.add('show');
+//             stopHint.style.transform = 'translateX(-50%) translateY(-5px)'; 
+//             setTimeout(() => { 
+//                 stopHint.classList.remove('show'); 
+//                 stopHint.style.transform = 'translateX(-50%) translateY(0)';
+//             }, 1500);
 
-        }
-    });
+//         }
+//     });
 
    
-    stopHint.addEventListener('mouseenter', () => stopHint.classList.add('show'));
-    stopHint.addEventListener('mouseleave', () => stopHint.classList.remove('show'));
+//     stopHint.addEventListener('mouseenter', () => stopHint.classList.add('show'));
+//     stopHint.addEventListener('mouseleave', () => stopHint.classList.remove('show'));
 
     
-    stopHint.addEventListener('click', () => {
-        if (document.fullscreenElement) document.exitFullscreen();
-    });
+//     stopHint.addEventListener('click', () => {
+//         if (document.fullscreenElement) document.exitFullscreen();
+//     });
 
     
-    document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement) {
-            presentBtn.style.display = 'block';
-            stopHint.classList.remove('show'); 
-        }
-    });
+//     document.addEventListener('fullscreenchange', () => {
+//         if (!document.fullscreenElement) {
+//             presentBtn.style.display = 'block';
+//             stopHint.classList.remove('show'); 
+//         }
+//     });
+// });
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const presentBtn = document.getElementById('presentBtn');
+//   const presentIndicator = document.getElementById('presentIndicator');
+//   const stopHint = document.getElementById('stopHint');
+
+//   if (!presentBtn || !presentIndicator || !stopHint) {
+//     console.warn('present elements missing');
+//     return;
+//   }
+
+  
+//   let hideTimer = null;
+//   function showStopHintBriefly() {
+//     stopHint.classList.add('show');
+//     if (hideTimer) clearTimeout(hideTimer);
+//     hideTimer = setTimeout(() => stopHint.classList.remove('show'), 2000);
+//   }
+
+  
+//   presentBtn.addEventListener('click', () => {
+//     if (!document.fullscreenElement) {
+     
+//       document.documentElement.requestFullscreen()
+//         .then(() => {
+//           presentBtn.style.display = 'none';
+//           presentIndicator.style.opacity = '1';
+//           setTimeout(() => presentIndicator.style.opacity = '0', 1200);
+          
+//           setTimeout(showStopHintBriefly, 600);
+//         })
+//         .catch(err => {
+//           console.error('requestFullscreen failed:', err);
+//         });
+//     } else {
+//       document.exitFullscreen();
+//     }
+//   });
+
+  
+//   document.addEventListener('mousemove', (e) => {
+//     if (!document.fullscreenElement) return;
+    
+//     if (e.clientY > window.innerHeight - 80) {
+//       stopHint.classList.add('show');
+//     } else {
+      
+//       if (!stopHint.matches(':hover')) stopHint.classList.remove('show');
+//     }
+//   });
+
+  
+//   stopHint.addEventListener('mouseenter', () => stopHint.classList.add('show'));
+//   stopHint.addEventListener('mouseleave', () => stopHint.classList.remove('show'));
+
+  
+//   stopHint.addEventListener('click', () => {
+//     if (document.fullscreenElement) document.exitFullscreen();
+//   });
+
+
+//   document.addEventListener('fullscreenchange', () => {
+//     if (!document.fullscreenElement) {
+//       presentBtn.style.display = 'block';
+//       stopHint.classList.remove('show');
+//       presentIndicator.style.opacity = '0';
+//     }
+//   });
+// });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const presentBtn = document.getElementById('presentBtn');
+  const presentIndicator = document.getElementById('presentIndicator');
+  const stopHint = document.getElementById('stopHint');
+
+  if (!presentBtn || !presentIndicator || !stopHint) return;
+
+  function showStopHint(duration = 2000) {
+    stopHint.classList.add('show');
+    setTimeout(() => stopHint.classList.remove('show'), duration);
+  }
+
+  presentBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        presentBtn.style.display = 'none';
+        presentIndicator.style.opacity = '1';
+        setTimeout(() => presentIndicator.style.opacity = '0', 1200);
+
+        showStopHint();
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!document.fullscreenElement) return;
+
+    if (e.clientY > window.innerHeight - 80) stopHint.classList.add('show');
+    else if (!stopHint.matches(':hover')) stopHint.classList.remove('show');
+  });
+
+  stopHint.addEventListener('mouseenter', () => stopHint.classList.add('show'));
+  stopHint.addEventListener('mouseleave', () => stopHint.classList.remove('show'));
+  stopHint.addEventListener('click', () => document.exitFullscreen());
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      presentBtn.style.display = 'block';
+      stopHint.classList.remove('show');
+      presentIndicator.style.opacity = '0';
+    }
+  });
 });
+
 
 
 
@@ -551,6 +882,214 @@ style.innerHTML = `
     to {opacity: 1; transform: translateY(0);}
 }`;
 document.head.appendChild(style);
+
+
+
+
+// const phaseNav = document.createElement('div');
+// phaseNav.className = 'phase-nav';
+
+// const phaseLinks = {
+//   "FIGMA": "Requirements Gathering",
+//   "BRD": "Requirements Gathering",
+//   "AEP": "Adobe Experience Platform",
+//   "Data Layer": "Data Layer Development & Validation",
+//   "Adobe Launch": "Adobe Launch Config & Validation",
+//   "Reporting": "Reporting Set-up",
+//   "Release": "Release"
+// };
+
+// // helper function
+// function cleanText(str) {
+//   return str.replace(/[▶▼]/g, "").trim().toLowerCase();
+// }
+
+// phases.forEach(phase => {
+//   const btn = document.createElement('div');
+//   btn.className = 'phase-btn';
+//   btn.textContent = phase;
+
+//   btn.addEventListener('mouseenter', () => btn.classList.add('hover'));
+//   btn.addEventListener('mouseleave', () => btn.classList.remove('hover'));
+
+//   btn.addEventListener('click', () => {
+//     const targetPhase = phaseLinks[phase];
+//     if (!targetPhase) return;
+
+//     const rows = document.querySelectorAll(".parent-row td");
+//     rows.forEach(td => {
+//       const text = cleanText(td.textContent);
+//       if (text === targetPhase.toLowerCase()) {
+//         // scroll + highlight
+//         td.scrollIntoView({ behavior: "smooth", block: "center" });
+//         td.style.transition = "box-shadow 0.5s ease";
+//         td.style.boxShadow = "0 0 10px 3px #b71c1c";
+//         setTimeout(() => (td.style.boxShadow = "none"), 1500);
+
+//         // auto-expand if not open
+//         const parentRow = td.closest(".parent-row");
+//         const nextRows = [];
+//         let next = parentRow.nextElementSibling;
+//         while (next && next.classList.contains("child-row")) {
+//           nextRows.push(next);
+//           next = next.nextElementSibling;
+//         }
+
+//         const isClosed = nextRows[0]?.style.display === "none";
+//         if (isClosed) {
+//           nextRows.forEach(r => {
+//             r.style.display = "table-row";
+//             setTimeout(() => r.classList.add("open"), 10);
+//           });
+//           td.textContent = `▼ ${targetPhase}`;
+//         }
+//       }
+//     });
+//   });
+
+//   phaseNav.appendChild(btn);
+
+//   if (phase !== "Project End") {
+//     const arrow = document.createElement('span');
+//     arrow.className = 'arrow';
+//     arrow.textContent = '➤';
+//     phaseNav.appendChild(arrow);
+//   }
+// });
+
+// document.querySelector("#timelineContainer").appendChild(phaseNav);
+
+
+// phases array (your labels)
+const phases = [
+  "Project Start", "FIGMA", "BRD", "AEP", "DATALAYER", "ADOBE LAUNCH", "REPORTING", "ADOBE TARGET", "RELEASE", "Project End"
+];
+
+const phaseLinks = {
+  "FIGMA": "Requirements Gathering",
+  "BRD": "Requirements Gathering",
+  "AEP": "Adobe Experience Platform",
+  "DATALAYER": "Data Layer Development & Validation",
+  "ADOBE LAUNCH": "Adobe Launch Config & Validation",
+  "REPORTING": "Reporting Set-up",
+  "ADOBE TARGET": "Adobe Target Activity Setup",
+  "RELEASE": "Release"
+};
+
+
+function cleanText(str){ return str.replace(/[▶▼]/g,'').trim().toLowerCase(); }
+
+const phaseNav = document.createElement('div');
+phaseNav.className = 'phase-nav';
+
+phases.forEach(label => {
+  const btn = document.createElement('div');
+  btn.className = 'phase-btn';
+  btn.textContent = label;
+  btn.title = label;
+  btn.style.fontSize = '12px'; // smaller so it doesn't wrap
+  btn.style.padding = '4px 8px';
+
+  btn.addEventListener('mouseenter', () => btn.classList.add('hover'));
+  btn.addEventListener('mouseleave', () => btn.classList.remove('hover'));
+
+
+//   btn.addEventListener('click', () => {
+//     const key = label.toUpperCase();
+//     const target = phaseLinks[key];
+//     if (!target) return; // no mapping, nothing to do
+
+//     // find the parent-row <td> whose text matches 'target'
+//     const parentTds = Array.from(document.querySelectorAll('.parent-row td'));
+//     const matchTd = parentTds.find(td => cleanText(td.textContent) === target.toLowerCase());
+
+//     if (!matchTd) return;
+
+//     // scroll + highlight (temporary box-shadow)
+//     matchTd.scrollIntoView({ behavior: 'smooth', block: 'center' });
+//     matchTd.style.transition = 'box-shadow 0.45s ease';
+//     matchTd.style.boxShadow = '0 0 12px 3px rgba(183,28,28,0.35)';
+//     setTimeout(()=> matchTd.style.boxShadow = 'none', 1400);
+
+//     // expand the section if closed
+//     const parentRow = matchTd.closest('.parent-row');
+//     if (!parentRow) return;
+//     let next = parentRow.nextElementSibling;
+//     let mustOpen = false;
+//     const rows = [];
+//     while(next && next.classList.contains('child-row')) {
+//       rows.push(next);
+//       if (next.style.display === 'none') mustOpen = true;
+//       next = next.nextElementSibling;
+//     }
+
+//     if (mustOpen) {
+//       rows.forEach(r => {
+//         r.style.display = 'table-row';
+//         // small timeout so CSS transitions apply
+//         setTimeout(()=> r.classList.add('open'), 10);
+//         r.dataset.open = 'true';
+//       });
+//       // update arrow
+//       matchTd.textContent = `▼ ${target}`;
+//     } else {
+//       // already open — leave as-is
+//     }
+//   });
+
+btn.addEventListener('click', () => {
+  const key = label.toUpperCase();
+  const target = phaseLinks[key];
+  if (!target) return;
+
+  const parentTds = Array.from(document.querySelectorAll('.parent-row td'));
+  const matchTd = parentTds.find(td => cleanText(td.textContent) === target.toLowerCase());
+  if (!matchTd) return;
+
+  // Scroll & highlight
+  matchTd.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  matchTd.style.transition = 'box-shadow 0.45s ease';
+  matchTd.style.boxShadow = '0 0 12px 3px rgba(183,28,28,0.35)';
+  setTimeout(() => matchTd.style.boxShadow = 'none', 1400);
+
+  // Expand child rows if collapsed
+  const parentRow = matchTd.closest('.parent-row');
+  if (!parentRow) return;
+
+  let next = parentRow.nextElementSibling;
+  const rows = [];
+  let mustOpen = false;
+
+  while(next && next.classList.contains('child-row')) {
+    rows.push(next);
+    if (window.getComputedStyle(next).display === 'none') mustOpen = true;
+    next = next.nextElementSibling;
+  }
+
+  if (mustOpen) {
+    rows.forEach(r => {
+      r.style.display = 'table-row';
+      setTimeout(() => r.classList.add('open'), 10);
+      r.dataset.open = 'true';
+    });
+    matchTd.textContent = `▼ ${target}`;
+  }
+});
+
+
+  phaseNav.appendChild(btn);
+  if (label !== "Project End") {
+    const arrow = document.createElement('span');
+    arrow.className = 'arrow';
+    arrow.textContent = '➤';
+    phaseNav.appendChild(arrow);
+  }
+});
+
+document.querySelector("#timelineContainer").appendChild(phaseNav);
+
+
+
 </script>
 
 </body>
