@@ -325,6 +325,19 @@ th { background-color: #b71c1c; color: white; }
 }
 
 
+    
+/* Darken table row on hover without changing color hue */
+.child-row:hover {
+    filter: brightness(90%);
+    transition: filter 0.2s ease;
+}
+
+.parent-row:hover {
+    background-color: #9c1414; /* slightly darker than header color for parent rows */
+    transition: background-color 0.2s ease;
+}
+
+
 
 
 .help-bar { background-color: #f5f5f5; color: #333; text-align: center; padding: 12px; font-size: 14px; border-top: 1px solid #ddd; width: 100%; position: fixed; bottom: 0; left: 0; z-index: 1000; }
@@ -332,9 +345,9 @@ th { background-color: #b71c1c; color: white; }
 </head>
 <body>
     <header>
-        <h1 style="margin-bottom:5px;">Meeting: Lilly.com Unified Experience</h1>
+        <h1 style="margin-bottom:5px;">(Consumer Teams Unified Forum) - Lilly.com Unified Experience</h1>
         <h2 style="margin:2px 0; font-weight:normal; font-size:16px; opacity:0.9;">
-            Date: 08/08/2025 | Time: 12:00 PM – 12:45 PM
+            Date: 10/09/2025 | Time: 12:00 PM – 12:45 PM
         </h2>
         <h2 style="margin:2px 0; font-weight:normal; font-size:16px; opacity:0.9;">
             Presenters: Kavin & Sona (LCCI Tagging Team)
@@ -390,59 +403,59 @@ const siteMeasurement = [
     {
         name: "Requirements Gathering",
         tasks: [
-            { name: "FIGMA Review", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/figma.png" },
-            { name: "BRD/SDR Creation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/brd.png" },
-            { name: "BRD/SDR Review & Approval", team: "Business team", poc: "Steven J Rommeney", vendor: "Internal", ref: "images/brd_review.png" }
+            { name: "FIGMA Review", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "figma.png" },
+            { name: "BRD/SDR Creation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "brd.png" },
+            { name: "BRD/SDR Review & Approval", team: "Business team", poc: "Steven J Rommeney", vendor: "Internal", ref: "brd_review.png" }
         ]
     },
     {
         name: "Adobe Experience Platform",
         tasks: [
-            { name: "XDM Schema Architecture Design & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "images/schema.png" },
-            { name: "Data Stream Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "images/datastream.png" },
-            { name: "Dataset Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "images/dataset.png" }
+            { name: "XDM Schema Architecture Design & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "schema.png" },
+            { name: "Data Stream Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "datastream.png" },
+            { name: "Dataset Creation & Finalize", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "dataset.png" }
         ]
     },
     {
         name: "Data Layer Development & Validation",
         tasks: [
-            { name: "DL Implementation Guide Creation", team: "Analytics", poc: "Pragna Kolli", vendor: "Deloitte", ref: "images/tsd.png" },
-            { name: "DL Implementation Guide Review & Sign Off", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/tsd.png" },
-            { name: "DL Development (by Devs)", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte", ref: "images/dl_dev.png" },
-            { name: "DL Development (by Devs)", team: "SPE", poc: "Tim Burch", vendor: "Internal", ref: "images/dl_dev.png" },
-            { name: "DL Validation & Fixes", team: "Analytics / LCCI Tagging team", poc: "Pragna Kolli & Satnam Singh", vendor: "Deloitte & Internal", ref: "images/dl_validation.png" }
+            { name: "DL Implementation Guide Creation", team: "Analytics", poc: "Pragna Kolli", vendor: "Deloitte", ref: "tsd.png" },
+            { name: "DL Implementation Guide Review & Sign Off", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "tsd.png" },
+            { name: "DL Development (by Devs)", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte", ref: "dl_dev.png" },
+            { name: "DL Development (by Devs)", team: "SPE", poc: "Tim Burch", vendor: "Internal", ref: "dl_dev.png" },
+            { name: "DL Validation & Fixes", team: "Analytics / LCCI Tagging team", poc: "Pragna Kolli & Satnam Singh", vendor: "Deloitte & Internal", ref: "dl_validation.png" }
         ]
     },
     {
         name: "Adobe Launch Config & Validation",
         tasks: [
-            { name: "Adobe Launch Property Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "images/launchUI.png" },
-            { name: "Marketing Pixel Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/pixel.png" },
-            { name: "Web SDK Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/websdk.png" },
-            { name: "GA4 Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/ga4.png" },
-            { name: "SPLUNK RUM Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/splunk.png" },
-            { name: "Marketing Pixel Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/pixelQA.png" },
-            { name: "Web SDK Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/websdkQA.png" },
-            { name: "GA4 Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/ga4QA.png" },
-            { name: "SPLUNK RUM Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/splunkQA.png" }
+            { name: "Adobe Launch Property Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "launchUI.png" },
+            { name: "Marketing Pixel Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "pixel.png" },
+            { name: "Web SDK Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "websdk.png" },
+            { name: "GA4 Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "ga4.png" },
+            { name: "SPLUNK RUM Setup", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "splunk.png" },
+            { name: "Marketing Pixel Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "pixelQA.png" },
+            { name: "Web SDK Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "websdkQA.png" },
+            { name: "GA4 Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "ga4QA.png" },
+            { name: "SPLUNK RUM Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "splunkQA.png" }
         ]
     },
     {
         name: "Reporting Set-up",
         tasks: [
-            { name: "Mapping Doc for CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/mapping.png" },
-            { name: "CJA Connections & Data Views", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "images/cja.png" },
-            { name: "CJA Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/cja_validation.png" },
-            { name: "GA4 Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/ga4_validation.png" }
+            { name: "Mapping Doc for CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "mapping.png" },
+            { name: "CJA Connections & Data Views", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "cja.png" },
+            { name: "CJA Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "cja_validation.png" },
+            { name: "GA4 Reporting Validation", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "ga4_validation.png" }
         ]
     },
     {
         name: "Release",
         tasks: [
-            { name: "Development", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte",  ref: "images/developmentEDS.png" },
-            { name: "Development", team: "SPE", poc: "Tim Burch", vendor: "Internal",  ref: "images/developmentSPE.png" },
-            { name: "Adobe Launch", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/launch.png" },
-            { name: "Schema", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "images/schema_release.png" }
+            { name: "Development", team: "EDS", poc: "Pragna Kolli", vendor: "Deloitte",  ref: "developmentEDS.png" },
+            { name: "Development", team: "SPE", poc: "Tim Burch", vendor: "Internal",  ref: "developmentSPE.png" },
+            { name: "Adobe Launch", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launch.png" },
+            { name: "Schema", team: "AEP", poc: "Stetson Barnhouse", vendor: "Credera", ref: "schema_release.png" }
         ]
     }
 ];
@@ -450,15 +463,15 @@ const personalizationMVPs = [
     {
         name: "Adobe Target Activity Setup",
         tasks: [
-            { name: "Use Case Identification & Design Doc", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "images/usecase.png" },
-            { name: "Audience Setup", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "images/audience.png" },
-            { name: "Adobe Target Workspace Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "images/targetUI.png" },
-            { name: "Target Activity Configuration", team: "Analytics team", poc: "Pragna Kolli", vendor: "Deloitte", ref: "images/activity_config.png" },
-            { name: "Personalization BRD", team: "Personalization Reporting team", poc: "Rajalakshmi M", vendor: "Credera", ref: "images/targetUI.png" },
-            { name: "Adobe Target Activity Data collection and send to GA4 & CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/target.png" },
-            { name: "Personalization use case QA & Validation", team: "Personalization QA team", poc: "Ramya Vonteddu", vendor: "Credera", ref: "images/qa.png" },
-            { name: "Adobe Target Activity Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/launch.png" },
-            { name: "Adobe Launch AT Set-up Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "images/launchRelease.png" }
+            { name: "Use Case Identification & Design Doc", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "usecase.png" },
+            { name: "Audience Setup", team: "Business Team", poc: "Ray Lo", vendor: "Internal", ref: "audience.png" },
+            { name: "Adobe Target Workspace Creation", team: "Platform team", poc: "Adwaith Bharani", vendor: "TCS", ref: "targetUI.png" },
+            { name: "Target Activity Configuration", team: "Analytics team", poc: "Pragna Kolli", vendor: "Deloitte", ref: "activity_config.png" },
+            { name: "Personalization BRD", team: "Personalization Reporting team", poc: "Rajalakshmi M", vendor: "Credera", ref: "targetUI.png" },
+            { name: "Adobe Target Activity Data collection and send to GA4 & CJA", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "target.png" },
+            { name: "Personalization use case QA & Validation", team: "Personalization QA team", poc: "Ramya Vonteddu", vendor: "Credera", ref: "qa.png" },
+            { name: "Adobe Target Activity Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launch.png" },
+            { name: "Adobe Launch AT Set-up Release", team: "LCCI Tagging team", poc: "Satnam Singh", vendor: "Internal", ref: "launchRelease.png" }
         ]
     }
 ];
@@ -1094,4 +1107,3 @@ document.querySelector("#timelineContainer").appendChild(phaseNav);
 
 </body>
 </html>
-
